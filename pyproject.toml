@@ -3,8 +3,9 @@ name = "projeto"
 version = "0.1.0"
 description = ""
 authors = [
-    {name = "Your Name",email = "you@example.com"}
+    {name = "rodrigo"}
 ]
+readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
     "django (>=6.0.1,<7.0.0)",
@@ -26,14 +27,3 @@ dependencies = [
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
-
-[dependency-groups]
-dev = [
-    "black (>=26.1.0,<27.0.0)",
-    "isort (>=7.0.0,<8.0.0)",
-    "flake8 (>=7.3.0,<8.0.0)",
-    "flake8-isort (>=7.0.0,<8.0.0)",
-    "flake8-black (>=0.4.0,<0.5.0)",
-    "pytest (>=9.0.2,<10.0.0)",
-    "pytest-django (>=4.11.1,<5.0.0)"
-]
