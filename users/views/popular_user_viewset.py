@@ -11,17 +11,36 @@ class PopularUsersViewSet(ReadOnlyModelViewSet):
     serializer_class = UserSerializer
 
     def get_queryset(self):
-        posts_count = Post.objects.filter(author=OuterRef("pk")).values("author").annotate(c=Count("id")).values("c")
+        posts_count = (
+            Post.objects.filter(author=OuterRef("pk"))
+            .values("author")
+            .annotate(c=Count("id"))
+            .values("c")
+        )
 
-        likes_count = Post.objects.filter(author=OuterRef("pk")).annotate(c=Count("likes")).values("c")
+        likes_count = (
+            Post.objects.filter(author=OuterRef("pk"))
+            .annotate(c=Count("likes"))
+            .values("c")
+        )
 
-        comments_count = Post.objects.filter(author=OuterRef("pk")).annotate(c=Count("comments")).values("c")
+        comments_count = (
+            Post.objects.filter(author=OuterRef("pk"))
+            .annotate(c=Count("comments"))
+            .values("c")
+        )
 
         return (
             User.objects.annotate(
-                posts_count=Coalesce(Subquery(posts_count, output_field=IntegerField()), Value(0)),
-                likes_count=Coalesce(Subquery(likes_count, output_field=IntegerField()), Value(0)),
-                comments_count=Coalesce(Subquery(comments_count, output_field=IntegerField()), Value(0)),
+                posts_count=Coalesce(
+                    Subquery(posts_count, output_field=IntegerField()), Value(0)
+                ),
+                likes_count=Coalesce(
+                    Subquery(likes_count, output_field=IntegerField()), Value(0)
+                ),
+                comments_count=Coalesce(
+                    Subquery(comments_count, output_field=IntegerField()), Value(0)
+                ),
                 followers_count=Count("followers", distinct=True),
             )
             .annotate(

@@ -7,6 +7,7 @@ from follows.models import Follow
 from posts.models import Post
 from posts.serializers import PostSerializer
 
+
 class FeedCursorPagination(CursorPagination):
     page_size = 10
     ordering = "-created_at"
@@ -17,7 +18,6 @@ class FeedViewSet(viewsets.ViewSet):
     permission_classes = [permissions.IsAuthenticated]
     pagination_class = FeedCursorPagination
 
-
     def base_queryset(self):
         return Post.objects.select_related("author").annotate(
             likes_count=Count("likes", distinct=True),
@@ -26,10 +26,14 @@ class FeedViewSet(viewsets.ViewSet):
 
     @action(detail=False, methods=["get"])
     def user_feed(self, request):
-        following_ids = Follow.objects.filter(follower=request.user).values_list("following_id", flat=True)
+        following_ids = Follow.objects.filter(follower=request.user).values_list(
+            "following_id", flat=True
+        )
 
         queryset = (
-            self.base_queryset().filter(author__in=list(following_ids) + [request.user.id]).order_by("-created_at")
+            self.base_queryset()
+            .filter(author__in=list(following_ids) + [request.user.id])
+            .order_by("-created_at")
         )
 
         return self.paginate_and_serialize(request, queryset)
@@ -41,7 +45,9 @@ class FeedViewSet(viewsets.ViewSet):
 
     @action(detail=False, methods=["get"])
     def images_feed(self, request):
-        following_ids = Follow.objects.filter(follower=request.user).values_list("following_id", flat=True)
+        following_ids = Follow.objects.filter(follower=request.user).values_list(
+            "following_id", flat=True
+        )
 
         queryset = (
             self.base_queryset()
@@ -64,7 +70,6 @@ class FeedViewSet(viewsets.ViewSet):
         )
 
         return self.paginate_and_serialize(request, queryset)
-
 
     def paginate_and_serialize(self, request, queryset):
         paginator = self.pagination_class()

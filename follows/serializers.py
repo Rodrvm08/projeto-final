@@ -4,8 +4,12 @@ from .models import Follow
 
 
 class FollowSerializer(serializers.ModelSerializer):
-    follower_username = serializers.CharField(source="follower.username", read_only=True)
-    following_username = serializers.CharField(source="following.username", read_only=True)
+    follower_username = serializers.CharField(
+        source="follower.username", read_only=True
+    )
+    following_username = serializers.CharField(
+        source="following.username", read_only=True
+    )
 
     class Meta:
         model = Follow

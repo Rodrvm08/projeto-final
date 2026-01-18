@@ -16,7 +16,9 @@ class LikeToggleView(APIView):
         try:
             post = Post.objects.get(id=post_id)
         except Post.DoesNotExist:
-            return Response({"detail": "Post não encontrado"}, status=status.HTTP_404_NOT_FOUND)
+            return Response(
+                {"detail": "Post não encontrado"}, status=status.HTTP_404_NOT_FOUND
+            )
 
         like = Like.objects.filter(user=user, post=post).first()
 

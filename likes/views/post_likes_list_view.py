@@ -10,4 +10,6 @@ class PostLikesListView(ListAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        return Like.objects.filter(post_id=self.kwargs["post_id"]).select_related("user")
+        return Like.objects.filter(post_id=self.kwargs["post_id"]).select_related(
+            "user"
+        )

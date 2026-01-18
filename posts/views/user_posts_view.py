@@ -24,6 +24,9 @@ class UserPostsView(ListAPIView):
 
         return (
             Post.objects.filter(author=user)
-            .annotate(likes_count=Count("likes", distinct=True), comments_count=Count("comments", distinct=True))
+            .annotate(
+                likes_count=Count("likes", distinct=True),
+                comments_count=Count("comments", distinct=True),
+            )
             .order_by("-created_at")
         )

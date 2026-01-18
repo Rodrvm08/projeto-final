@@ -12,7 +12,9 @@ class CommentListCreateView(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
-        return Comment.objects.filter(post_id=self.kwargs["post_id"]).order_by("-created_at")
+        return Comment.objects.filter(post_id=self.kwargs["post_id"]).order_by(
+            "-created_at"
+        )
 
     def perform_create(self, serializer):
         post = get_object_or_404(Post, id=self.kwargs["post_id"])

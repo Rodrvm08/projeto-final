@@ -17,7 +17,8 @@ class User(AbstractUser):
         unique=True,
         validators=[
             RegexValidator(
-                regex=r"^[a-zA-Z0-9._-]+$", message='Username pode conter apenas letras, números, ".", "_" e "-".'
+                regex=r"^[a-zA-Z0-9._-]+$",
+                message='Username pode conter apenas letras, números, ".", "_" e "-".',
             )
         ],
     )
@@ -47,7 +48,11 @@ class User(AbstractUser):
         if not self.pk:
             base = f"@{self.username}"
         else:
-            old = User.objects.filter(pk=self.pk).values_list("username", flat=True).first()
+            old = (
+                User.objects.filter(pk=self.pk)
+                .values_list("username", flat=True)
+                .first()
+            )
             if old != self.username:
                 base = f"@{self.username}"
             else:

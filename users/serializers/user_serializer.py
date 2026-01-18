@@ -72,6 +72,8 @@ class UserSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Esse username já está em uso.")
 
         if not value[0].isupper():
-            raise serializers.ValidationError("O username deve começar com letra maiúscula.")
+            raise serializers.ValidationError(
+                "O username deve começar com letra maiúscula."
+            )
 
         return value

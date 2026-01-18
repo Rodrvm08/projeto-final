@@ -18,7 +18,10 @@ class PostViewSet(viewsets.ModelViewSet):
     queryset = (
         Post.objects.all()
         .select_related("author")
-        .annotate(likes_count=Count("likes", distinct=True), comments_count=Count("comments", distinct=True))
+        .annotate(
+            likes_count=Count("likes", distinct=True),
+            comments_count=Count("comments", distinct=True),
+        )
     )
     serializer_class = PostSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
