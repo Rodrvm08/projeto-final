@@ -4,8 +4,8 @@ from rest_framework.decorators import action
 from rest_framework.pagination import CursorPagination
 
 from follows.models import Follow
-from post.models import Post
-from post.serializers import PostSerializer
+from posts.models import Post
+from posts.serializers import PostSerializer
 
 class FeedCursorPagination(CursorPagination):
     page_size = 10

@@ -3,7 +3,7 @@ from rest_framework.test import APITestCase
 
 from follows.factories import FollowFactory
 from follows.models import Follow
-from user.factories import UserFactory
+from users.factories import UserFactory
 
 
 class FollowAPITestCase(APITestCase):
