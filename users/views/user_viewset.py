@@ -5,9 +5,9 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from follows.models import Follow
-from user.models import User
-from user.serializers.change_password_serializer import ChangePasswordSerializer
-from user.serializers.user_serializer import UserSerializer
+from users.models import User
+from users.serializers.change_password_serializer import ChangePasswordSerializer
+from users.serializers.user_serializer import UserSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):

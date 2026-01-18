@@ -2,9 +2,9 @@ from django.db.models import Count, F, IntegerField, OuterRef, Subquery, Value
 from django.db.models.functions import Coalesce
 from rest_framework.viewsets import ReadOnlyModelViewSet
 
-from post.models import Post
-from user.models import User
-from user.serializers.user_serializer import UserSerializer
+from posts.models import Post
+from users.models import User
+from users.serializers.user_serializer import UserSerializer
 
 
 class PopularUsersViewSet(ReadOnlyModelViewSet):

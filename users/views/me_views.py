@@ -2,8 +2,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from user.serializers.user_serializer import UserSerializer
-from user.serializers.user_update_serializer import UserUpdateSerializer
+from users.serializers.user_serializer import UserSerializer
+from users.serializers.user_update_serializer import UserUpdateSerializer
 
 
 class MeView(APIView):

@@ -4,7 +4,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from follows.models import Follow
 from follows.serializers import FollowSerializer
-from user.models import User
+from users.models import User
 
 
 class FollowersListView(ListAPIView):
