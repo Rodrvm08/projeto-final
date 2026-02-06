@@ -4,9 +4,9 @@ git clone [https://github.com/seu-usuario/nome-do-projeto.git](https://github.co
 cd projeto-final
 2. Crie e ative um ambiente virtual
 python -m venv venv
-# No Linux/Mac:
+No Linux/Mac:
 source venv/bin/activate
-# No Windows:
+No Windows:
 venv\Scripts\activate
 3. Instale as dependências
 pip install -r requirements.txt
